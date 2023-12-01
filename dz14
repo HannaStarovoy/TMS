@@ -4,9 +4,9 @@ use lesson14;
 
 create table users (
 	id int unsigned primary key auto_increment,
-	username varchar(30) not null,
+	username varchar(30) uniquenot null  ,
     password varchar(30) not null,
-    email varchar(40) not null
+    email varchar(40) unique not null
 );
 
 create table seller (
@@ -19,7 +19,7 @@ create table products (
 	id int unsigned primary key auto_increment,
 	name varchar(30) not null,
     cost int unsigned not null,
-    count int unsigned null,
+    count int default 0 not null,
     seller_id int unsigned not null,
 
 
@@ -30,7 +30,7 @@ create table orders (
 	id int unsigned primary key auto_increment,
 	user_id int unsigned not null,
     product_id int unsigned not null,
-    count int unsigned null,
+    count int unsigned default 0 not null,
 
     foreign key (user_id) references users (id),
 	foreign key (product_id) references products (id)
